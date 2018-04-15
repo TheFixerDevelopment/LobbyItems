@@ -2,7 +2,7 @@ name: LobbyItems
 version: LI-2.0
 api: 3.0.0-ALPHA11
 main: VL\LobbyItems
-author: VL (Real Author) | Zadezter
+author: TRPE (Real Author) | Zadezter
 commands:
     build:
         description: Lobby with a Build-mode command!
