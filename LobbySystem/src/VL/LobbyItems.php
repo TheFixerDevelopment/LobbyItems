@@ -222,13 +222,13 @@ class LobbyItems extends PluginBase implements Listener
 		$Citybuild = Item::get(138, 1, 1);
 		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
-		$Lobby1 = Item::get(7, 1, 1);
+		$Lobby1 = Item::get(98, 1, 1);
 		$Lobby1->setCustomName(TextFormat::RESET . TextFormat::RED . "Lobby1");
          
 		$inv->setItem(8, $exit);
-		$inv->setItem(0, $Citybuild);
-		$inv->setItem(2, $Bald);
-		$inv->setItem(4, $MiniGames);
+		$inv->setItem(0, $Bald);
+		$inv->setItem(2, $MiniGames);
+		$inv->setItem(4, $Citybuild);
 		$inv->setItem(6, $Lobby1);
 
 	}
@@ -238,11 +238,11 @@ class LobbyItems extends PluginBase implements Listener
 		$inv = $player->getInventory();
 		$inv->clearAll();
 
-		$Lobby1 = Item::get(42, 0, 1);
-		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
+		$Lobby = Item::get(42, 0, 1);
+		$Lobby->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
 
-		$Lobby2 = Item::get(42, 0, 1);
-		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
+		$Lobby = Item::get(42, 0, 1);
+		$Lobby->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
 
 		$PremiumLobby = Item::get(41, 0, 1);
 		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
@@ -588,7 +588,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::RED . "Lobby1") {
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Lobby1") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19132");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
