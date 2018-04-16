@@ -216,8 +216,8 @@ class LobbyItems extends PluginBase implements Listener
 		$Skyblock = Item::get(2, 1, 1);
 		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Skyblock");
 
-		$Oneline = Item::get(322, 1, 1);
-		$Oneline->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Oneline");
+		$MiniGames = Item::get(322, 1, 1);
+		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GOLD . "MiniGames");
 
 		$Citybuild = Item::get(138, 1, 1);
 		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
@@ -227,9 +227,9 @@ class LobbyItems extends PluginBase implements Listener
 
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $Citybuild);
-		$inv->setItem(1, $Skyblock);
-		$inv->setItem(2, $Oneline);
-		$inv->setItem(4, $Bale);
+		$inv->setItem(2, $Skyblock);
+		$inv->setItem(4, $MiniGames);
+		$inv->setItem(6, $Bald);
 
 	}
 
@@ -238,13 +238,13 @@ class LobbyItems extends PluginBase implements Listener
 		$inv = $player->getInventory();
 		$inv->clearAll();
 
-		$lobby1 = Item::get(42, 0, 1);
-		$lobby1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
+		$Lobby1 = Item::get(42, 0, 1);
+		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
 
-		$lobby2 = Item::get(42, 0, 1);
-		$lobby2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
+		$Lobby2 = Item::get(42, 0, 1);
+		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
 
-		$prelobby = Item::get(41, 0, 1);
+		$PremiumLobby = Item::get(41, 0, 1);
 		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
 
 		$exit = Item::get(351, 1, 1);
@@ -591,8 +591,8 @@ class LobbyItems extends PluginBase implements Listener
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Skyblock") {
 			$event->getPlayer()->transfer("", "");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "Oneline") {
-			$event->getPlayer()->transfer("", "");
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
+			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
