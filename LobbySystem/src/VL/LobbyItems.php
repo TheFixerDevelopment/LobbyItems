@@ -50,7 +50,7 @@ use pocketmine\event\player\PlayerCommandPreprocessEvent;
 class LobbyItems extends PluginBase implements Listener
 {
 
-	public $prefix = TextFormat::YELLOW . "EnjoyTheView" . TextFormat::GRAY . " | " . TextFormat::WHITE;
+	public $prefix = TextFormat::RED . "EnjoyTheView" . TextFormat::GRAY . " | " . TextFormat::WHITE;
 	public $heart = array("Hearth111");
 	public $jump = array("Jump222");
 	public $speed = array("Speed333");
@@ -86,7 +86,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TypeType($this), 20);
 
-		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::RED . "EnjoyTheView");
+		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::GREEN . "EnjoyTheView");
 
 		$this->getServer()->getDefaultLevel()->setTime(1000);
 		$this->getServer()->getDefaultLevel()->stopTime();
@@ -214,7 +214,7 @@ class LobbyItems extends PluginBase implements Listener
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
 		$Skyblock = Item::get(2, 1, 1);
-		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "SkyBlock");
+		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Skyblock");
 
 		$MiniGames = Item::get(322, 1, 1);
 		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GOLD . "MiniGames");
@@ -223,7 +223,7 @@ class LobbyItems extends PluginBase implements Listener
 		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
 		$Bald = Item::get(103, 1, 1);
-		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
+		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
 
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $Citybuild);
@@ -239,10 +239,10 @@ class LobbyItems extends PluginBase implements Listener
 		$inv->clearAll();
 
 		$Lobby1 = Item::get(42, 0, 1);
-		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby1" . TextFormat::BOLD . TextFormat::GOLD . "1");
+		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
 
 		$Lobby2 = Item::get(42, 0, 1);
-		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby2" . TextFormat::BOLD . TextFormat::GOLD . "2");
+		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
 
 		$PremiumLobby = Item::get(41, 0, 1);
 		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
@@ -250,9 +250,9 @@ class LobbyItems extends PluginBase implements Listener
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$inv->setItem(1, $Citybuild);
-		$inv->setItem(3, $Skyblock);
-		$inv->setItem(5, $MiniGames);
+		$inv->setItem(0, $Lobby-1);
+		$inv->setItem(1, $Lobby-2);
+		$inv->setItem(7, $PremiumLobby);
 
 		$inv->setItem(8, $exit);
 
@@ -334,7 +334,7 @@ class LobbyItems extends PluginBase implements Listener
 		}
 	}
 
-	public function getGadgets(Player $player)
+	public function getCosmetics(Player $player)
 	{
 		$inv = $player->getInventory();
 		$inv->clearAll();
@@ -400,10 +400,10 @@ class LobbyItems extends PluginBase implements Listener
 		$item1->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Teleporter");
 
 		$item2 = Item::get(54, 0, 1);
-		$item2->setCustomName(TextFormat::RESET . TextFormat::RED . "Gadgets");
+		$item2->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Cosmetics");
 
 		$item3 = Item::get(264, 0, 1);
-		$item3->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Rang Info");
+		$item3->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Rang Info");
 
 		if (!in_array($name, $this->showall) && !in_array($name, $this->showvips) && !in_array($name, $this->shownone)) {
 
@@ -419,7 +419,7 @@ class LobbyItems extends PluginBase implements Listener
 		} elseif (in_array($name, $this->showvips)) {
 
 			$item4 = Item::get(351, 5, 1);
-			$item4->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIPs sichtbar");
+			$item4->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIP's sichtbar");
 
 		} elseif (in_array($name, $this->shownone)) {
 
@@ -557,7 +557,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		if ($in == TextFormat::RESET . TextFormat::GREEN . "Alle Spieler sichtbar") {
 			$item = Item::get(351, 5, 1);
-			$item->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIPs sichtbar");
+			$item->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIP's sichtbar");
 
 			$inv->setItem(7, $item);
 
@@ -588,10 +588,10 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "SkyBlock") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk", "19132");
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Skyblock") {
+			$event->getPlayer()->transfer("", "");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "Oneline") {
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
@@ -606,8 +606,8 @@ class LobbyItems extends PluginBase implements Listener
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Nick") {
 			var_dump("geht");
-			$event->getPlayer()->sendMessage($this->prefix . TextFormat::RED . "Bald");
-		}
+    $event->getPlayer()->sendMessage($this->prefix. Textformat::RED. "Bald");
+}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Fly") {
 			var_dump("geht");
@@ -693,14 +693,14 @@ class LobbyItems extends PluginBase implements Listener
 			
 		}
 		
-		if($in == TextFormat::RESET . TextFormat::GOLD . "Gadgets") {
-			if($player->hasPermission("lobby.gadget")) {
+		if($in == TextFormat::RESET . TextFormat::GOLD . "Cosmetics") {
+			if($player->hasPermission("lobby.cosmetics")) {
 				
-				$this->getGadgets($player);
+				$this->getCosmetics($player);
 				
 			} else {
 				
-				$player->sendMessage($this->prefix . TextFormat::RED . "Du kannst keine Gadgets benutzen!");
+				$player->sendMessage($this->prefix . TextFormat::RED . "Du kannst keine Cosmetics benutzen!");
 				
 			}
 			
