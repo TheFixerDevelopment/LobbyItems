@@ -50,7 +50,7 @@ use pocketmine\event\player\PlayerCommandPreprocessEvent;
 class LobbyItems extends PluginBase implements Listener
 {
 
-	public $prefix = TextFormat::RED . "EnjoyTheView" . TextFormat::GRAY . " | " . TextFormat::WHITE;
+	public $prefix = TextFormat::YELLOW . "EnjoyTheView" . TextFormat::GRAY . " | " . TextFormat::WHITE;
 	public $heart = array("Hearth111");
 	public $jump = array("Jump222");
 	public $speed = array("Speed333");
@@ -86,7 +86,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TypeType($this), 20);
 
-		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::GREEN . "EnjoyTheView");
+		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::RED . "EnjoyTheView");
 
 		$this->getServer()->getDefaultLevel()->setTime(1000);
 		$this->getServer()->getDefaultLevel()->stopTime();
@@ -214,7 +214,7 @@ class LobbyItems extends PluginBase implements Listener
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
 		$Skyblock = Item::get(2, 1, 1);
-		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Skyblock");
+		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "SkyBlock");
 
 		$MiniGames = Item::get(322, 1, 1);
 		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GOLD . "MiniGames");
@@ -223,7 +223,7 @@ class LobbyItems extends PluginBase implements Listener
 		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
 		$Bald = Item::get(103, 1, 1);
-		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
+		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
 
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $Citybuild);
@@ -239,10 +239,10 @@ class LobbyItems extends PluginBase implements Listener
 		$inv->clearAll();
 
 		$Lobby1 = Item::get(42, 0, 1);
-		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
+		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby1" . TextFormat::BOLD . TextFormat::GOLD . "1");
 
 		$Lobby2 = Item::get(42, 0, 1);
-		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
+		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby2" . TextFormat::BOLD . TextFormat::GOLD . "2");
 
 		$PremiumLobby = Item::get(41, 0, 1);
 		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
@@ -250,9 +250,9 @@ class LobbyItems extends PluginBase implements Listener
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$inv->setItem(0, $Lobby-1);
-		$inv->setItem(1, $Lobby-2);
-		$inv->setItem(7, $PremiumLobby);
+		$inv->setItem(1, $Citybuild);
+		$inv->setItem(3, $Skyblock);
+		$inv->setItem(5, $MiniGames);
 
 		$inv->setItem(8, $exit);
 
@@ -396,11 +396,11 @@ class LobbyItems extends PluginBase implements Listener
 		$inv = $player->getInventory();
 		$inv->clearAll();
 
-		$item1 = Item::get(368, 0, 1);
+		$item1 = Item::get(345, 0, 1);
 		$item1->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Teleporter");
 
-		$item2 = Item::get(130, 0, 1);
-		$item2->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Cosmetics");
+		$item2 = Item::get(54, 0, 1);
+		$item2->setCustomName(TextFormat::RESET . TextFormat::RED . "Cosmetics");
 
 		$item3 = Item::get(264, 0, 1);
 		$item3->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Rang Info");
@@ -588,14 +588,14 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "Skyblock") {
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "SkyBlock") {
 			$event->getPlayer()->transfer("", "");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Oneline") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
+			$event->getPlayer()->transfer("EnjoyTheView","19133");
 		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Rang Info") {
@@ -606,80 +606,8 @@ class LobbyItems extends PluginBase implements Listener
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Nick") {
 			var_dump("geht");
-
-public $prefix = "§7[§5Nick§7] ";
-public $nicked = [];
-public $purePerms = null;
-
-public function onEnable(){
-@mkdir($this->getDataFolder());
-$config = new Config($this->getDataFolder()."config.yml", Config::YAML);
-if(empty($config->get("Nicks"))){
-$config->set("Nicks", array("Peter", "Gamer123"));
-$config->set("NickGroup", "Nicked");
-$config->save();
-}
-$this->purePerms = $this->getServer()->getPluginManager()->getPlugin("PurePerms");
-$this->getLogger()->info($this->prefix."§awurde aktiviert");
-}
-public function onQuit(PlayerQuitEvent $event){
-$player = $event->getPlayer();
-if(in_array($player->getName(), $this->nicked)){
-$player->setDisplayName($sender->getName());
-$this->purePerms->getUserDataMgr()->setGroup($player, $this->nicked[$player->getName()], null);
-$fskin = $player->getSkinData();
-$player->setSkin($fskin, "Standard_Custom");
-$player->despawnFromAll();
-$player->spawnToAll();
-unset($this->nicked[array_search($player->getName(), $this->nicked)]);
-}
-}
-public function onKick(PlayerKickEvent $event){
-$player = $event->getPlayer();
-if(in_array($player->getName(), $this->nicked)){
-$player->setDisplayName($sender->getName());
-$this->purePerms->getUserDataMgr()->setGroup($player, $this->nicked[$player->getName()], null);
-$fskin = $player->getSkinData();
-$player->setSkin($fskin, "Standard_Custom");
-$player->despawnFromAll();
-$player->spawnToAll();
-unset($this->nicked[array_search($player->getName(), $this->nicked)]);
-}
-}
-public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
-$config = new Config($this->getDataFolder()."config.yml", Config::YAML);
-if(strtolower($cmd->getName()) == "nick"){
-if($sender instanceof Player){
-if($sender->hasPermission("nick.use")){
-if(!in_array($sender->getName(), $this->nicked)){
-$r = rand(0, count($config->get("Nicks"))-1);
-$nick = $config->get("Nicks")[$r];
-$this->nicked[] = $sender->getName();
-$this->nicked[$sender->getName()] = $this->purePerms->getUserDataMgr()->getGroup($sender);
-$this->purePerms->getUserDataMgr()->setGroup($sender, $this->purePerms->getGroup($config->get("NickGroup")), null);
-$sender->setDisplayName($nick);
-$fskin = $this->getServer()->getOnlinePlayers()[array_rand($this->getServer()->getOnlinePlayers())]->getSkinData();
-$sender->setSkin($fskin, "Standard_Custom");
-$sender->despawnFromAll();
-$sender->spawnToAll();
-$sender->sendMessage($this->prefix."§aDu wurdest genickt");
-}else{
-$sender->setDisplayName($sender->getName());
-$this->purePerms->getUserDataMgr()->setGroup($sender, $this->nicked[$sender->getName()], null);
-$fskin = $sender->getSkinData();
-$sender->setSkin($fskin, "Standard_Custom");
-$sender->despawnFromAll();
-$sender->spawnToAll();
-unset($this->nicked[array_search($sender->getName(), $this->nicked)]);
-$sender->sendMessage($this->prefix."§aDu wurdest entnickt");
-}
-}else{
-$sender->sendMessage("§cDu darfst das nicht");
-}
-}else{
-$this->getLogger()->info($this->prefix."§cDas kann nur ein Spieler");
-
-}
+			$event->getPlayer()->sendMessage($this->prefix . TextFormat::RED . "Bald");
+		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Fly") {
 			var_dump("geht");
@@ -712,7 +640,7 @@ $this->getLogger()->info($this->prefix."§cDas kann nur ein Spieler");
 			}
 		
 		if ($in == TextFormat::GOLD . "Syblock Lobby") {
-			if($event->getPlayer()->hasPermission("lobby.premium")) {
+			if($event->getPlayer()->hasPermission("Skyblock.premium")) {
 				
 				$this->getServer()->dispatchCommand($event->getPlayer(), "transferserver");
 				
