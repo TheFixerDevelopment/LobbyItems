@@ -594,7 +594,7 @@ class LobbyItems extends PluginBase implements Listener
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Citybuild") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
 		}
 
