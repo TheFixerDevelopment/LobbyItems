@@ -239,10 +239,10 @@ class LobbyItems extends PluginBase implements Listener
 		$inv->clearAll();
 
 		$Lobby1 = Item::get(42, 0, 1);
-		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby1" . TextFormat::BOLD . TextFormat::GOLD . "1");
+		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby1" . TextFormat::BOLD . TextFormat::GOLD . "Lobby1");
 
 		$Lobby2 = Item::get(42, 0, 1);
-		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby2" . TextFormat::BOLD . TextFormat::GOLD . "2");
+		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby2" . TextFormat::BOLD . TextFormat::GOLD . "Lobby2");
 
 		$PremiumLobby = Item::get(41, 0, 1);
 		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
@@ -334,7 +334,7 @@ class LobbyItems extends PluginBase implements Listener
 		}
 	}
 
-	public function getCosmetics(Player $player)
+	public function getGadgets(Player $player)
 	{
 		$inv = $player->getInventory();
 		$inv->clearAll();
@@ -400,10 +400,10 @@ class LobbyItems extends PluginBase implements Listener
 		$item1->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Teleporter");
 
 		$item2 = Item::get(54, 0, 1);
-		$item2->setCustomName(TextFormat::RESET . TextFormat::RED . "Cosmetics");
+		$item2->setCustomName(TextFormat::RESET . TextFormat::RED . "Gadgets");
 
 		$item3 = Item::get(264, 0, 1);
-		$item3->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Rang Info");
+		$item3->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Rang Info");
 
 		if (!in_array($name, $this->showall) && !in_array($name, $this->showvips) && !in_array($name, $this->shownone)) {
 
@@ -419,7 +419,7 @@ class LobbyItems extends PluginBase implements Listener
 		} elseif (in_array($name, $this->showvips)) {
 
 			$item4 = Item::get(351, 5, 1);
-			$item4->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIP's sichtbar");
+			$item4->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIPs sichtbar");
 
 		} elseif (in_array($name, $this->shownone)) {
 
@@ -589,13 +589,13 @@ class LobbyItems extends PluginBase implements Listener
 		}
 		//run
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "SkyBlock") {
-			$event->getPlayer()->transfer("", "");
+			$event->getPlayer()->transfer("EnjoyTheView.tk", "19132");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Oneline") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
-			$event->getPlayer()->transfer("EnjoyTheView","19133");
+			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
 		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Rang Info") {
