@@ -222,14 +222,14 @@ class LobbyItems extends PluginBase implements Listener
 		$Citybuild = Item::get(138, 1, 1);
 		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
-		$Bald = Item::get(7, 1, 1);
-		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
-
+		$Lobby1 = Item::get(7, 1, 1);
+		$Lobby1->setCustomName(TextFormat::RESET . TextFormat::RED . "Lobby1");
+         
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $Citybuild);
 		$inv->setItem(2, $Bald);
 		$inv->setItem(4, $MiniGames);
-		$inv->setItem(6, $Bald);
+		$inv->setItem(6, $Lobby1);
 
 	}
 
@@ -462,7 +462,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$event->setJoinMessage("");
 		$event->getPlayer()->setFood("20");
-		$player->setGamemode(2);
+		$player->setGamemode(0);
 
 		//$this->getItems($player);
 
@@ -588,8 +588,8 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::RED . "Bald") {
-			$event->getPlayer()->transfer("", "");
+		if ($in == TextFormat::RESET . TextFormat::RED . "Lobby1") {
+			$event->getPlayer()->transfer("EnjoyTheView.tk", "19132");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
@@ -1314,7 +1314,7 @@ class LobbyItems extends PluginBase implements Listener
             
         }
 		
-		if ($cmd->getName() == "lobby") {
+		if ($cmd->getName() == "Lobby") {
 			
 			$spawn = $this->getServer()->getDefaultLevel()->getSafeSpawn(); 
 			$this->getServer()->getDefaultLevel()->loadChunk($spawn->getFloorX(), $spawn->getFloorZ());
