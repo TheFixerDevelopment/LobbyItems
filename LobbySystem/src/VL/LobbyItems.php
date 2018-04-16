@@ -239,10 +239,10 @@ class LobbyItems extends PluginBase implements Listener
 		$inv->clearAll();
 
 		$Lobby1 = Item::get(42, 0, 1);
-		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby1" . TextFormat::BOLD . TextFormat::GOLD . "Lobby1");
+		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby1" . TextFormat::BOLD . TextFormat::GOLD . "1");
 
 		$Lobby2 = Item::get(42, 0, 1);
-		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby2" . TextFormat::BOLD . TextFormat::GOLD . "Lobby2");
+		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby2" . TextFormat::BOLD . TextFormat::GOLD . "2");
 
 		$PremiumLobby = Item::get(41, 0, 1);
 		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
@@ -640,7 +640,7 @@ class LobbyItems extends PluginBase implements Listener
 			}
 		
 		if ($in == TextFormat::GOLD . "Syblock Lobby") {
-			if($event->getPlayer()->hasPermission("Skyblock.premium")) {
+			if($event->getPlayer()->hasPermission("lobby.premium")) {
 				
 				$this->getServer()->dispatchCommand($event->getPlayer(), "transferserver");
 				
@@ -693,14 +693,14 @@ class LobbyItems extends PluginBase implements Listener
 			
 		}
 		
-		if($in == TextFormat::RESET . TextFormat::GOLD . "Cosmetics") {
-			if($player->hasPermission("lobby.cosmetics")) {
+		if($in == TextFormat::RESET . TextFormat::GOLD . "Gadgets") {
+			if($player->hasPermission("lobby.gadget")) {
 				
-				$this->getCosmetics($player);
+				$this->getGadgets($player);
 				
 			} else {
 				
-				$player->sendMessage($this->prefix . TextFormat::RED . "Du kannst keine Cosmetics benutzen!");
+				$player->sendMessage($this->prefix . TextFormat::RED . "Du kannst keine Gadgets benutzen!");
 				
 			}
 			
