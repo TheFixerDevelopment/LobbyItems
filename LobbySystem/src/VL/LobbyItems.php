@@ -213,8 +213,8 @@ class LobbyItems extends PluginBase implements Listener
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$Skyblock = Item::get(2, 1, 1);
-		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Skyblock");
+		$Skyblock = Item::get(7, 1, 1);
+		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
 
 		$MiniGames = Item::get(322, 1, 1);
 		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GOLD . "MiniGames");
@@ -222,12 +222,12 @@ class LobbyItems extends PluginBase implements Listener
 		$Citybuild = Item::get(138, 1, 1);
 		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
-		$Bald = Item::get(103, 1, 1);
-		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
+		$Bald = Item::get(7, 1, 1);
+		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
 
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $Citybuild);
-		$inv->setItem(2, $Skyblock);
+		$inv->setItem(2, $Bald);
 		$inv->setItem(4, $MiniGames);
 		$inv->setItem(6, $Bald);
 
@@ -403,7 +403,7 @@ class LobbyItems extends PluginBase implements Listener
 		$item2->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Cosmetics");
 
 		$item3 = Item::get(264, 0, 1);
-		$item3->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Rang Info");
+		$item3->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Rang Info");
 
 		if (!in_array($name, $this->showall) && !in_array($name, $this->showvips) && !in_array($name, $this->shownone)) {
 
@@ -588,7 +588,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "Skyblock") {
+		if ($in == TextFormat::RESET . TextFormat::RED . "Bald") {
 			$event->getPlayer()->transfer("", "");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
