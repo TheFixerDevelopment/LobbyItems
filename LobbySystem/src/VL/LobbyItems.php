@@ -214,22 +214,22 @@ class LobbyItems extends PluginBase implements Listener
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
 		$Skyblock = Item::get(2, 1, 1);
-		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "SkyBlock");
+		$Skyblock->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Skyblock");
 
-		$Faction = Item::get(322, 1, 1);
-		$Faction->setCustomName(TextFormat::RESET . TextFormat::GOLD . "KnockbackFFA");
+		$Oneline = Item::get(322, 1, 1);
+		$Oneline->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Oneline");
 
 		$Citybuild = Item::get(138, 1, 1);
-		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "CityBuild");
+		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
-		$sur = Item::get(103, 1, 1);
-		$sur->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Oneline");
+		$Bald = Item::get(103, 1, 1);
+		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
 
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $Citybuild);
-		$inv->setItem(1, $SkyblocK);
+		$inv->setItem(1, $Skyblock);
 		$inv->setItem(2, $Oneline);
-		//$inv->setItem(4, $sur);
+		$inv->setItem(4, $Bale);
 
 	}
 
@@ -239,20 +239,20 @@ class LobbyItems extends PluginBase implements Listener
 		$inv->clearAll();
 
 		$lobby1 = Item::get(42, 0, 1);
-		$lobby1->setCustomName(TextFormat::GRAY . "KnockbackFFA" . TextFormat::BOLD . TextFormat::GOLD . "1");
+		$lobby1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
 
 		$lobby2 = Item::get(42, 0, 1);
-		$lobby2->setCustomName(TextFormat::GRAY . "Skyblock" . TextFormat::BOLD . TextFormat::GOLD . "2");
+		$lobby2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
 
 		$prelobby = Item::get(41, 0, 1);
-		$prelobby->setCustomName(TextFormat::GOLD . "CityBuild Lobby");
+		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
 
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$inv->setItem(0, $CityBuild);
-		$inv->setItem(1, $Skyblock);
-		$inv->setItem(7, $KnockbackFFA);
+		$inv->setItem(0, $Lobby-1);
+		$inv->setItem(1, $Lobby-2);
+		$inv->setItem(7, $PremiumLobby);
 
 		$inv->setItem(8, $exit);
 
@@ -588,11 +588,11 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "SkyBlock") {
-			$event->getPlayer()->transfer("54.37.166.50", "33");
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Skyblock") {
+			$event->getPlayer()->transfer("", "");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Oneline") {
-			$event->getPlayer()->transfer("54.37.166.50", "90");
+			$event->getPlayer()->transfer("", "");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
