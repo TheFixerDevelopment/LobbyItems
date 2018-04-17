@@ -219,14 +219,14 @@ class LobbyItems extends PluginBase implements Listener
 		$MiniGames = Item::get(322, 1, 1);
 		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GREEN . "MiniGames");
 
-		$Citybuild = Item::get(138, 1, 1);
-		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
+		$CityBuild = Item::get(138, 1, 1);
+		$CityBuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "CityBuild");
 
 		$Bald = Item::get(7, 1, 1);
 		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
 
 		$inv->setItem(8, $exit);
-		$inv->setItem(0, $Citybuild);
+		$inv->setItem(0, $CityBuild);
 		$inv->setItem(2, $Bald);
 		$inv->setItem(4, $MiniGames);
 		$inv->setItem(6, $Bald);
@@ -594,7 +594,7 @@ class LobbyItems extends PluginBase implements Listener
 		if ($in == TextFormat::RESET . TextFormat::GREEN . "MiniGames") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "Citybuild") {
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
 		}
 
@@ -606,7 +606,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Nick") {
 			var_dump("geht");
-			$event->getPlayer()->sendMessage($this->prefix . TextFormat::RED . "Bald");
+			$event->getPlayer()->sendMessage($this->prefix . TextFormat::RED . "In Arbeit!");
 		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Fly") {
