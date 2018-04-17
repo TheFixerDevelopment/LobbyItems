@@ -210,17 +210,17 @@ class LobbyItems extends PluginBase implements Listener
 		$inv = $player->getInventory();
 		$inv->clearAll();
 
-		$exit = Item::get(351, 1, 1);
-		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
+		$Exit = Item::get(351, 1, 1);
+		$Exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
 		$Bald = Item::get(7, 1, 1);
 		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
 
-		$MiniGames = Item::get(322, 1, 1);
-		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GOLD . "MiniGames");
+		$Citybuild = Item::get(322, 1, 1);
+		$CityBuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
-		$Citybuild = Item::get(138, 1, 1);
-		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
+		$MiniGames = Item::get(138, 1, 1);
+		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GOLD . "MiniGames");
 
 		$Bald = Item::get(7, 1, 1);
 		$Bald>setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
@@ -462,7 +462,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$event->setJoinMessage("");
 		$event->getPlayer()->setFood("20");
-		$player->setGamemode(0);
+		$player->setGamemode(2);
 
 		//$this->getItems($player);
 
@@ -591,11 +591,11 @@ class LobbyItems extends PluginBase implements Listener
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Bald") {
 			$event->getPlayer()->transfer("", "");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
-		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Citybuild") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
+			$event->getPlayer()->transfer("EnjoyTheView.tk", "19133");
+		}
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
+			$event->getPlayer()->transfer("EnjoyTheView.tk","19134");
 
 		}
 
