@@ -3,7 +3,7 @@
 namespace VL;
 use VL\TypeType;
 use VL\ItemsLoad;
-
+ 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\inventory\InventoryOpenEvent;
 use pocketmine\event\inventory\InventoryTransactionEvent;
@@ -27,6 +27,8 @@ use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
+use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\PluginTask;
 use pocketmine\Player;
 use pocketmine\entity\Effect;
 use pocketmine\entity\Entity;
@@ -38,6 +40,12 @@ use pocketmine\item\Item;
 use pocketmine\entity\Item as ItemEntity;
 use pocketmine\math\Vector3;
 use pocketmine\math\Vector2;
+
+use pocketmine\level\particle\DustParticle;
+use pocketmine\level\particle\FlameParticle;
+use pocketmine\level\particle\RedstoneParticle;
+use pocketmine\level\particle\LavaParticle;
+use pocketmine\level\particle\PortalParticle;
 
 use pocketmine\level\sound\PopSound;
 use pocketmine\level\sound\GhastSound;
@@ -78,10 +86,11 @@ class LobbyItems extends PluginBase implements Listener
 	public $particle = array("Particle");
 	*/
 
-	public function onEnable(): void{
+	public function onEnable()
+	{
 
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->getLogger()->info(TextFormat::GREEN . "Plugin has enabled by zGodSky.");
+		$this->getLogger()->info(TextFormat::GREEN . "LobbyPlugin has been enabled by zGodSky");
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new ItemsLoad($this), 10);
 
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TypeType($this), 20);
@@ -94,13 +103,14 @@ class LobbyItems extends PluginBase implements Listener
 		@mkdir($this->getDataFolder());
 		$config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 
-		$config->set("OpenChest1", false);
+		$config->set("OpenChest1", true);
 		$config->set("OpenChest2", false);
 		$config->save();
 
 	}
 
-	public function onDisable(): void{
+	public function onDisable()
+	{
 
 		$this->getLogger()->info(TextFormat::RED . "Deaktiviert");
 
@@ -210,21 +220,21 @@ class LobbyItems extends PluginBase implements Listener
 		$inv = $player->getInventory();
 		$inv->clearAll();
 
-		$Exit = Item::get(351, 1, 1);
-		$Exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
+		$exit = Item::get(351, 1, 1);
+		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$Bald = Item::get(7, 1, 1);
-		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
+		$Citybuild = Item::get(138,1, 1);
+		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
-		$Citybuild = Item::get(322, 1, 1);
-		$CityBuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
+		$Bals = Item::get(7, 1, 1);
+		$Bald->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Bald");
 
-		$MiniGames = Item::get(138, 1, 1);
+		$MiniGames = Item::get(322, 1, 1);
 		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GOLD . "MiniGames");
 
 		$Bald = Item::get(7, 1, 1);
-		$Bald>setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
-         
+		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
+
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $Citybuild);
 		$inv->setItem(2, $Bald);
@@ -238,21 +248,21 @@ class LobbyItems extends PluginBase implements Listener
 		$inv = $player->getInventory();
 		$inv->clearAll();
 
-		$Lobby1 = Item::get(42, 0, 1);
-		$Lobby1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
+		$lobby1 = Item::get(42, 0, 1);
+		$lobby1->setCustomName(TextFormat::GRAY . "Bald" . TextFormat::BOLD . TextFormat::GOLD . "1");
 
-		$Lobby2 = Item::get(42, 0, 1);
-		$Lobby2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
+		$lobby2 = Item::get(42, 0, 1);
+		$lobby2->setCustomName(TextFormat::GRAY . "Bald" . TextFormat::BOLD . TextFormat::GOLD . "2");
 
-		$PremiumLobby = Item::get(41, 0, 1);
-		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
+		$prelobby = Item::get(42, 0, 1);
+		$prelobby->setCustomName(TextFormat::GOLD . "Bald");
 
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$inv->setItem(0, $Lobby1);
-		$inv->setItem(1, $Lobby2);
-		$inv->setItem(7, $PremiumLobby);
+		$inv->setItem(0, $Bald);
+		$inv->setItem(4, $Bald);
+		$inv->setItem(6, $Bald);
 
 		$inv->setItem(8, $exit);
 
@@ -292,7 +302,7 @@ class LobbyItems extends PluginBase implements Listener
 		if (!$player->isWhitelisted($name)) {
 			$msg =
 				TextFormat::BOLD . TextFormat::GRAY . "+++-----------+++-----------+++\n" .
-				TextFormat::RESET . TextFormat::GOLD . "EnjoyTheView" . TextFormat::GRAY . "|" . TextFormat::RED . " WhiteListed\n" .
+				TextFormat::RESET . TextFormat::RED . "EnjoyTheView" . TextFormat::GRAY . "|" . TextFormat::RED . " WhiteListed\n" .
 				TextFormat::GOLD . "Wir sind in WartungsArbeiten...";
 			$player->close("", $msg);
 		}
@@ -403,7 +413,7 @@ class LobbyItems extends PluginBase implements Listener
 		$item2->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Cosmetics");
 
 		$item3 = Item::get(264, 0, 1);
-		$item3->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Rang Info");
+		$item3->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Rang Info");
 
 		if (!in_array($name, $this->showall) && !in_array($name, $this->showvips) && !in_array($name, $this->shownone)) {
 
@@ -462,7 +472,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$event->setJoinMessage("");
 		$event->getPlayer()->setFood("20");
-		$player->setGamemode(2);
+		$player->setGamemode(0);
 
 		//$this->getItems($player);
 
@@ -557,7 +567,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		if ($in == TextFormat::RESET . TextFormat::GREEN . "Alle Spieler sichtbar") {
 			$item = Item::get(351, 5, 1);
-			$item->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIP's sichtbar");
+			$item->setCustomName(TextFormat::RESET . TextFormat::DARK_PURPLE . "Nur VIPs sichtbar");
 
 			$inv->setItem(7, $item);
 
@@ -591,12 +601,11 @@ class LobbyItems extends PluginBase implements Listener
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Bald") {
 			$event->getPlayer()->transfer("", "");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "Citybuild") {
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19133");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19134");
-
 		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Rang Info") {
@@ -607,8 +616,8 @@ class LobbyItems extends PluginBase implements Listener
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Nick") {
 			var_dump("geht");
-    $event->getPlayer()->sendMessage($this->prefix. Textformat::RED. "Bald");
-}
+			$event->getPlayer()->sendMessage($this->prefix . TextFormat::RED . "Bald");
+		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Fly") {
 			var_dump("geht");
@@ -636,7 +645,7 @@ class LobbyItems extends PluginBase implements Listener
 		}
 
 
-		if ($in == TextFormat::GRAY . "Oneline" . TextFormat::BOLD . TextFormat::GOLD . "2") {
+		if ($in == TextFormat::GRAY . "MiniGames". TextFormat::BOLD . TextFormat::GOLD . "2") {
             $this->getServer()->dispatchCommand($event->getPlayer(), "transferserver");
 			}
 		
@@ -1324,5 +1333,349 @@ class LobbyItems extends PluginBase implements Listener
         }
         return true;
 		}
+	
+}
+
+class TypeType extends PluginTask {
+	
+	public function __construct($plugin) {
+        $this->plugin = $plugin;
+        parent::__construct($plugin);
+		
+		$this->time1 = 0;
+		$this->time2 = 0;
+		
+    }
+
+    public function onRun($tick) {
+		
+		$level = $this->plugin->getServer()->getDefaultLevel();
+		
+		$center1 = new Vector3(260.5, 6.5, 238.5);
+		$center2 = new Vector3(260.5, 6.5, 270.5);
+		
+		$config = new Config($this->plugin->getDataFolder() . "config.yml", Config::YAML);
+		
+		if(!$config->get("OpenChest1")) {
+			for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+				$x = -sin($yaw) + $center1->x;
+				$z = cos($yaw) + $center1->z;
+				$y = $center1->y;
+				
+				$level->addParticle(new FlameParticle(new Vector3($x, $y, $z)));
+			}
+		} else {
+			if($this->time1 == 4) {
+				$this->time1 = 0;
+			}
+			
+			$this->time1++;
+			
+			if($this->time1 < 4) {
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center1->x;
+					$z = cos($yaw) + $center1->z;
+					$y = $center1->y;
+					
+					$level->addParticle(new RedstoneParticle(new Vector3($x, $y, $z)));
+					
+				}
+				
+			} else {
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center1->x;
+					$z = cos($yaw) + $center1->z;
+					$y = $center1->y;
+					
+					$level->addParticle(new RedstoneParticle(new Vector3($x, $y + 1, $z)));
+					
+				}
+				
+				$config->set("OpenChest1", false);
+				$config->save();
+				
+			}
+			
+		}
+		
+		if(!$config->get("OpenChest2")) {
+			for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+				$x = -sin($yaw) + $center2->x;
+				$z = cos($yaw) + $center2->z;
+				$y = $center2->y;
+				
+				$level->addParticle(new FlameParticle(new Vector3($x, $y, $z)));
+			}
+		} else {
+			if($this->time2 == 4) {
+				$this->time2 = 0;
+			}
+			
+			$this->time2++;
+			
+			if($this->time2 < 4) {
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center2->x;
+					$z = cos($yaw) + $center2->z;
+					$y = $center2->y;
+					
+					$level->addParticle(new RedstoneParticle(new Vector3($x, $y, $z)));
+					
+				}
+				
+			} else {
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center2->x;
+					$z = cos($yaw) + $center2->z;
+					$y = $center2->y;
+					
+					$level->addParticle(new RedstoneParticle(new Vector3($x, $y + 1, $z)));
+					
+				}
+				
+				$config->set("OpenChest2", false);
+				$config->save();
+				
+			}
+			
+		}
+		
+		
+	}
+	
+}
+
+class ItemsLoad extends PluginTask {
+	
+	public function __construct($plugin) {
+        $this->plugin = $plugin;
+        parent::__construct($plugin);
+    }
+
+    public function onRun($tick) {
+		
+		foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
+			$name = $player->getName();
+			$inv = $player->getInventory();
+			
+			$players = $player->getLevel()->getPlayers();
+			$level = $player->getLevel();
+			
+			$x = $player->getX();
+			$y = $player->getY() + 2;
+			$z = $player->getZ();
+			
+			foreach($players as $play) {
+				if(in_array($name, $this->plugin->showall)) {
+					
+					$player->showPlayer($play);
+					
+				} elseif(in_array($name, $this->plugin->showvips)) {
+					
+					if($play->hasPermission("lobby.see.vip")) {
+						
+						$player->showPlayer($play);
+						
+					} else {
+						
+						$player->hidePlayer($play);
+						
+					}
+					
+				} elseif(in_array($name, $this->plugin->shownone)) {
+					
+					$player->hidePlayer($play);
+					
+				}
+				
+			}
+			
+			// rot
+			if(in_array($name, $this->plugin->particle1)) {
+				
+				$r = 255;
+				$g = 0;
+				$b = 0;
+				
+				$center = new Vector3($x, $y, $z);
+				$particle = new DustParticle($center, $r, $g, $b, 1);
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center->x;
+					$z = cos($yaw) + $center->z;
+					$y = $center->y;
+					
+					$particle->setComponents($x, $y, $z);
+					$level->addParticle($particle);
+						
+				}
+				
+			}
+			//gelb
+			if(in_array($name, $this->plugin->particle2)) {
+				
+				$r = 255;
+				$g = 255;
+				$b = 0;
+				
+				$center = new Vector3($x, $y, $z);
+				$particle = new DustParticle($center, $r, $g, $b, 1);
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center->x;
+					$z = cos($yaw) + $center->z;
+					$y = $center->y;
+					
+					$particle->setComponents($x, $y, $z);
+					$level->addParticle($particle);
+						
+				}
+			}
+			//gruen
+			if(in_array($name, $this->plugin->particle3)) {
+				
+				$r = 0;
+				$g = 255;
+				$b = 0;
+				
+				$center = new Vector3($x, $y, $z);
+				$particle = new DustParticle($center, $r, $g, $b, 1);
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center->x;
+					$z = cos($yaw) + $center->z;
+					$y = $center->y;
+					
+					$particle->setComponents($x, $y, $z);
+					$level->addParticle($particle);
+						
+				}
+			}
+			//blau
+			if(in_array($name, $this->plugin->particle4)) {
+				
+				$r = 0;
+				$g = 0;
+				$b = 255;
+				
+				$center = new Vector3($x, $y, $z);
+				$particle = new DustParticle($center, $r, $g, $b, 1);
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center->x;
+					$z = cos($yaw) + $center->z;
+					$y = $center->y;
+					
+					$particle->setComponents($x, $y, $z);
+					$level->addParticle($particle);
+						
+				}
+				
+			}
+			//orange
+			if(in_array($name, $this->plugin->particle5)) {
+				
+				$r = 255;
+				$g = 165;
+				$b = 0;
+				
+				$center = new Vector3($x, $y, $z);
+				$particle = new DustParticle($center, $r, $g, $b, 1);
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 20){
+					$x = -sin($yaw) + $center->x;
+					$z = cos($yaw) + $center->z;
+					$y = $center->y;
+					
+					$particle->setComponents($x, $y, $z);
+					$level->addParticle($particle);
+						
+				}
+				
+			}
+			
+			if(in_array($name, $this->plugin->particle6)) {
+				$x = $player->getX();
+				$y = $player->getY();
+				$z = $player->getZ();
+				
+				$center = new Vector3($x, $y, $z);
+				
+				for($yaw = 0;  $yaw <= 10; $yaw += (M_PI * 2) / 10){
+					$x = -sin($yaw) + $center->x;
+					$z = cos($yaw) + $center->z;
+					$y = $center->y;
+					
+					$level->addParticle(new FlameParticle(new Vector3($x, $y + 1.5, $z)));
+						
+				}
+				
+				
+			}
+			
+			//Boots
+			if(in_array($name, $this->plugin->heart)) {
+				
+				$player->getLevel()->addParticle(new HeartParticle(new Vector3($player->getX(), $player->getY() + 0.4, $player->getZ())), $players);
+				$effect = Effect::getEffect(10);
+				$effect->setDuration(999);
+				$effect->setAmplifier(1);
+				$effect->setVisible(false);
+				
+				$inv->setBoots(Item::get(301, 0, 1));
+				
+				$player->addEffect($effect);
+				
+			}
+			
+			if(in_array($name, $this->plugin->jump)) {
+				
+				//$player->getLevel()->addParticle(new LavaParticle(new Vector3($player->getX(), $player->getY() + 0.5, $player->getZ())), $players);
+				$effect = Effect::getEffect(8);
+				$effect->setDuration(999);
+				$effect->setAmplifier(1);
+				$effect->setVisible(false);
+				
+				$inv->setBoots(Item::get(317, 0, 1));
+				
+				$player->addEffect($effect);
+				
+			}
+			
+			if(in_array($name, $this->plugin->speed)) {
+				
+				//$player->getLevel()->addParticle(new ExplodeParticle(new Vector3($player->getX(), $player->getY() + 0.5, $player->getZ())), $players);
+				$effect = Effect::getEffect(1);
+				$effect->setDuration(999);
+				$effect->setAmplifier(3);
+				$effect->setVisible(false);
+				
+				$inv->setBoots(Item::get(309, 0, 1));
+				
+				$player->addEffect($effect);
+				
+			}
+			
+			if(in_array($name, $this->plugin->water)) {
+				
+				$player->getLevel()->addParticle(new HugeExplodeParticle(new Vector3($player->getX(), $player->getY() + 1, $player->getZ())), $players);
+				$effect = Effect::getEffect(13);
+				$effect->setDuration(999);
+				$effect->setAmplifier(1);
+				$effect->setVisible(false);
+				
+				$inv->setBoots(Item::get(313, 0, 1));
+				
+				$player->addEffect($effect);
+				
+			}
+			
+		}
+		
+	}
 	
 }
