@@ -588,8 +588,8 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "Lobby1") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk", "19132");
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Bald") {
+			$event->getPlayer()->transfer("", "");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19134");
@@ -597,8 +597,8 @@ class LobbyItems extends PluginBase implements Listener
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Citybuild") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
 	    
-        if ($in == TextFormat::RESET . TextFormat::GOLD . "Bald") {
-		    $event->getPlayer()->transfer("","");
+        if ($in == TextFormat::RESET . TextFormat::GOLD . "Lobby1") {
+		    $event->getPlayer()->transfer("EnjoyTheView.tk","19132");
 		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Rang Info") {
@@ -1317,7 +1317,7 @@ class LobbyItems extends PluginBase implements Listener
             
         }
 		
-		if ($cmd->getName() == "Lobby") {
+		if ($cmd->getName() == "lobby") {
 			
 			$spawn = $this->getServer()->getDefaultLevel()->getSafeSpawn(); 
 			$this->getServer()->getDefaultLevel()->loadChunk($spawn->getFloorX(), $spawn->getFloorZ());
