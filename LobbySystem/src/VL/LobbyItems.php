@@ -81,7 +81,7 @@ class LobbyItems extends PluginBase implements Listener
 	public function onEnable(): void{
 
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->getLogger()->info(TextFormat::GREEN . "Plugin has enabled.");
+		$this->getLogger()->info(TextFormat::GREEN . "Plugin has enabled by zGodSky[Dont edit the author!]");
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new ItemsLoad($this), 10);
 
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TypeType($this), 20);
