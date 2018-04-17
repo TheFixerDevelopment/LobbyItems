@@ -226,7 +226,7 @@ class LobbyItems extends PluginBase implements Listener
 		$Citybuild = Item::get(138,1, 1);
 		$Citybuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Citybuild");
 
-		$Bals = Item::get(7, 1, 1);
+		$Bald = Item::get(7, 1, 1);
 		$Bald->setCustomName(TextFormat::RESET . TextFormat::GOLD . "Bald");
 
 		$MiniGames = Item::get(322, 1, 1);
@@ -598,11 +598,11 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Citybuild") {
+			$event->getPlayer()->transfer("EnjoyTheView.tk", "19133");
+		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Bald") {
 			$event->getPlayer()->transfer("", "");
-		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk", "19133");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "MiniGames") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19134");
@@ -645,7 +645,7 @@ class LobbyItems extends PluginBase implements Listener
 		}
 
 
-		if ($in == TextFormat::GRAY . "MiniGames". TextFormat::BOLD . TextFormat::GOLD . "2") {
+		if ($in == TextFormat::GRAY . "Oneline" . TextFormat::BOLD . TextFormat::GOLD . "2") {
             $this->getServer()->dispatchCommand($event->getPlayer(), "transferserver");
 			}
 		
