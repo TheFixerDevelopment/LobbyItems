@@ -226,10 +226,10 @@ class LobbyItems extends PluginBase implements Listener
 		$Lobby1->setCustomName(TextFormat::RESET . TextFormat::RED . "Lobby1");
          
 		$inv->setItem(8, $exit);
-		$inv->setItem(0, $Bald);
-		$inv->setItem(2, $MiniGames);
-		$inv->setItem(4, $Citybuild);
-		$inv->setItem(6, $Lobby1);
+		$inv->setItem(0, $Lobby1);
+		$inv->setItem(2, $Citybuild);
+		$inv->setItem(4, $MiniGames);
+		$inv->setItem(6, $Bald);
 
 	}
 
@@ -596,6 +596,8 @@ class LobbyItems extends PluginBase implements Listener
 		}
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Citybuild") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
+	    if ($in == TextFormat::RESET . TextFormat::GOLD . "Bald") {
+		    $event->getPlayer()->transfer("","");
 		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Rang Info") {
