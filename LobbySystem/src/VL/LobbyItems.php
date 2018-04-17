@@ -236,10 +236,10 @@ class LobbyItems extends PluginBase implements Listener
 		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
 
 		$inv->setItem(8, $exit);
-		$inv->setItem(0, $Citybuild);
-		$inv->setItem(2, $Bald);
-		$inv->setItem(4, $MiniGames);
-		$inv->setItem(6, $Bald);
+		$inv->setItem(6, $Citybuild);
+		$inv->setItem(4, $Bald);
+		$inv->setItem(2, $MiniGames);
+		$inv->setItem(0, $Bald);
 
 	}
 
@@ -249,20 +249,20 @@ class LobbyItems extends PluginBase implements Listener
 		$inv->clearAll();
 
 		$lobby1 = Item::get(42, 0, 1);
-		$lobby1->setCustomName(TextFormat::GRAY . "Bald" . TextFormat::BOLD . TextFormat::GOLD . "1");
+		$lobby1->setCustomName(TextFormat::GRAY . "lobby1" . TextFormat::BOLD . TextFormat::GOLD . "1");
 
 		$lobby2 = Item::get(42, 0, 1);
-		$lobby2->setCustomName(TextFormat::GRAY . "Bald" . TextFormat::BOLD . TextFormat::GOLD . "2");
+		$lobby2->setCustomName(TextFormat::GRAY . "lobby2" . TextFormat::BOLD . TextFormat::GOLD . "2");
 
 		$prelobby = Item::get(42, 0, 1);
-		$prelobby->setCustomName(TextFormat::GOLD . "Bald");
+		$prelobby->setCustomName(TextFormat::GOLD . "prelobby");
 
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$inv->setItem(0, $Bald);
-		$inv->setItem(4, $Bald);
-		$inv->setItem(6, $Bald);
+		$inv->setItem(0, $lobby1);
+		$inv->setItem(2, $lobby2);
+		$inv->setItem(4, prelobby);
 
 		$inv->setItem(8, $exit);
 
