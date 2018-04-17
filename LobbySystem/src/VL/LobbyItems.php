@@ -462,7 +462,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$event->setJoinMessage("");
 		$event->getPlayer()->setFood("20");
-		$player->setGamemode(2);
+		$player->setGamemode(0);
 
 		//$this->getItems($player);
 
