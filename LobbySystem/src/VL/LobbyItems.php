@@ -86,7 +86,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TypeType($this), 20);
 
-		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::GREEN . "TeronixPE");
+		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::GREEN . "EnjoyTheView");
 
 		$this->getServer()->getDefaultLevel()->setTime(1000);
 		$this->getServer()->getDefaultLevel()->stopTime();
@@ -213,8 +213,8 @@ class LobbyItems extends PluginBase implements Listener
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$Lobby = Item::get(42,1, 1);
-		$Lobby->setCustomName(TextFormat::RESET . TextFormat::BLUE . "Lobby");
+		$Hub = Item::get(42,1, 1);
+		$Hub->setCustomName(TextFormat::RESET . TextFormat::BLUE . "Hub");
 
 		$MiniGames = Item::get(322, 1, 1);
 		$MiniGames->setCustomName(TextFormat::RESET . TextFormat::GREEN . "MiniGames");
@@ -227,7 +227,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$inv->setItem(8, $exit);
 		$inv->setItem(0, $CityBuild);
-		$inv->setItem(2, $Lobby);
+		$inv->setItem(2, $Hub);
 		$inv->setItem(4, $MiniGames);
 		$inv->setItem(6, $Bald);
 
@@ -588,7 +588,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::RED . "Lobby") {
+		if ($in == TextFormat::RESET . TextFormat::RED . "Hub") {
 			$event->getPlayer()->transfer("EnjoyTheView.tk", "19132");
 		}
 		if ($in == TextFormat::RESET . TextFormat::GREEN . "MiniGames") {
