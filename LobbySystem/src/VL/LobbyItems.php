@@ -656,7 +656,7 @@ class LobbyItems extends PluginBase implements Listener
 		
 		if($in == TextFormat::RESET . TextFormat::GOLD . "Teleporter") {
 			
-			$this->getRangInfo($player);
+			$this->getTeleporter($player);
 		}
 		
 		if($in == TextFormat::RESET . TextFormat::GOLD . "Diamond - 10€") {
