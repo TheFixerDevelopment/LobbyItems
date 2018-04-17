@@ -236,10 +236,10 @@ class LobbyItems extends PluginBase implements Listener
 		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
 
 		$inv->setItem(8, $exit);
-		$inv->setItem(6, $Citybuild);
-		$inv->setItem(4, $Bald);
-		$inv->setItem(2, $MiniGames);
-		$inv->setItem(0, $Bald);
+		$inv->setItem(0, $Citybuild);
+		$inv->setItem(2, $Bald);
+		$inv->setItem(4, $MiniGames);
+		$inv->setItem(6, $Bald);
 
 	}
 
@@ -472,7 +472,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$event->setJoinMessage("");
 		$event->getPlayer()->setFood("20");
-		$player->setGamemode(0);
+		$player->setGamemode(2);
 
 		//$this->getItems($player);
 
