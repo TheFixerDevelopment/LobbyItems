@@ -226,8 +226,8 @@ class LobbyItems extends PluginBase implements Listener
 		$Lobby1->setCustomName(TextFormat::RESET . TextFormat::RED . "Lobby1");
          
 		$inv->setItem(8, $exit);
-		$inv->setItem(0, $Lobby1);
-		$inv->setItem(2, $Citybuild);
+		$inv->setItem(0, $Citybuild);
+		$inv->setItem(2, $Lobby1);
 		$inv->setItem(4, $MiniGames);
 		$inv->setItem(6, $Bald);
 
@@ -238,11 +238,11 @@ class LobbyItems extends PluginBase implements Listener
 		$inv = $player->getInventory();
 		$inv->clearAll();
 
-		$Lobby = Item::get(42, 0, 1);
-		$Lobby->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
+		$Lobby-1 = Item::get(42, 0, 1);
+		$Lobby-1->setCustomName(TextFormat::GRAY . "Lobby-1" . TextFormat::GOLD . TextFormat::GOLD . "1");
 
-		$Lobby = Item::get(42, 0, 1);
-		$Lobby->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
+		$Lobby-2 = Item::get(42, 0, 1);
+		$Lobby-2->setCustomName(TextFormat::GRAY . "Lobby-2" . TextFormat::GOLD . TextFormat::GOLD . "2");
 
 		$PremiumLobby = Item::get(41, 0, 1);
 		$PremiumLobby->setCustomName(TextFormat::GOLD . "PremiumLobby");
