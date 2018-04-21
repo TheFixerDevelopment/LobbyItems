@@ -1,6 +1,6 @@
 name: LobbyItems
 version: LI-2.1
-api: [3.0.0-ALPHA12]
+api: [3.0.0-ALPHA12, 3.0.0-ALPHA13]
 main: VL\LobbyItems
 author: TRPE (Real Author) | Zadezter
 commands:
