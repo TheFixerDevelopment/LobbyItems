@@ -86,7 +86,7 @@ class LobbyItems extends PluginBase implements Listener
 
 		$this->getServer()->getScheduler()->scheduleRepeatingTask(new TypeType($this), 20);
 
-		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::GREEN . "EnjoyTheView");
+		$this->getServer()->getNetwork()->setName(TextFormat::BOLD . TextFormat::GREEN . "§6§lVoid§bMiner§cPE §dNetwork");
 
 		$this->getServer()->getDefaultLevel()->setTime(1000);
 		$this->getServer()->getDefaultLevel()->stopTime();
@@ -213,22 +213,22 @@ class LobbyItems extends PluginBase implements Listener
 		$exit = Item::get(351, 1, 1);
 		$exit->setCustomName(TextFormat::RESET . TextFormat::RED . "Exit");
 
-		$MainHub = Item::get(41,1, 1);
-		$MainHub->setCustomName(TextFormat::RESET . TextFormat::BLUE . "MainHub");
+		$Factions = Item::get(46,1, 1);
+		$Factions->setCustomName(TextFormat::RESET . TextFormat::BLUE . "§aFactions");
 
-		$Bald = Item::get(7, 1, 1);
-		$Bald->setCustomName(TextFormat::RESET . TextFormat::GREEN . "Bald");
+		$Prisons = Item::get(101, 1, 1);
+		$Prisons->setCustomName(TextFormat::RESET . TextFormat::GREEN . "§bPrisons");
 
-		$CityBuild = Item::get(138, 1, 1);
-		$CityBuild->setCustomName(TextFormat::RESET . TextFormat::GOLD . "CityBuild");
+		$KitPvP = Item::get(276, 1, 1);
+		$KitPvP->setCustomName(TextFormat::RESET . TextFormat::GOLD . "§cKitPvP - §7Coming Soon.");
 
 		$Bald = Item::get(7, 1, 1);
 		$Bald->setCustomName(TextFormat::RESET . TextFormat::RED . "Bald");
 
 		$inv->setItem(8, $exit);
-		$inv->setItem(0, $CityBuild);
-		$inv->setItem(2, $MainHub);
-		$inv->setItem(4, $Bald);
+		$inv->setItem(0, $Factions);
+		$inv->setItem(2, $Prisons);
+		$inv->setItem(4, $KitPvP);
 		$inv->setItem(6, $Bald);
 
 	}
@@ -588,14 +588,14 @@ class LobbyItems extends PluginBase implements Listener
 
 		}
 		//run
-		if ($in == TextFormat::RESET . TextFormat::BLUE . "MainHub") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk", "19132");
+		if ($in == TextFormat::RESET . TextFormat::BLUE . "Factions") {
+			$event->getPlayer()->transfer("voidfactionspe.ml", "19132");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GREEN . "Bald") {
-			$event->getPlayer()->transfer("", "");
+		if ($in == TextFormat::RESET . TextFormat::GREEN . "Prisons") {
+			$event->getPlayer()->transfer("voidprisonspe.ml", "25641");
 		}
-		if ($in == TextFormat::RESET . TextFormat::GOLD . "CityBuild") {
-			$event->getPlayer()->transfer("EnjoyTheView.tk","19133");
+		if ($in == TextFormat::RESET . TextFormat::GOLD . "Prisons") {
+			$event->getPlayer()->transfer("voidkitpvppe.ml","25630");
 		}
 
 		if ($in == TextFormat::RESET . TextFormat::GOLD . "Rang Info") {
@@ -653,7 +653,7 @@ class LobbyItems extends PluginBase implements Listener
 			}
         }
 		
-		if($in == TextFormat::RESET . TextFormat::GOLD . "Teleporter") {
+		if($in == TextFormat::RESET . TextFormat::GOLD . "§b§lServer Selector (§cTap me!)") {
 			
 			$this->getTeleporter($player);
 		}
