@@ -27,7 +27,7 @@ class TypeType extends PluginTask {
 		$this->time2 = 0;
 		
     }
-    public function onRun($currentTick) {
+    public function onRun(int $currentTick) {
 		
 		$level = $this->plugin->getServer()->getDefaultLevel();
 		
