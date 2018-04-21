@@ -34,7 +34,7 @@ class ItemsLoad extends PluginTask {
         $this->plugin = $plugin;
         parent::__construct($plugin);
     }
-    public function onRun($currentTick) {
+    public function onRun(int $currentTick) {
 		
 		foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
 			$name = $player->getName();
