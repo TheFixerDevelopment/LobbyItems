@@ -1295,7 +1295,7 @@ class LobbyItems extends PluginBase implements Listener
 		
 	}
 	
-	public function onCommand(CommandSender $sender, Command $cmd, $label, array $args):bool {
+	public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args): bool {
 		$name = $sender->getName();
 		
         if ($cmd->getName() == "build" && $sender->hasPermission("lobby.build")) {
